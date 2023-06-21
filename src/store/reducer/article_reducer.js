@@ -15,7 +15,8 @@ const articleReducer = createSlice({
                 is_vendable: true,
                 photo: "https://i0.wp.com/portdattache.bzh/wp-content/uploads/2018/03/graine-de-sarrasin-focus.jpg?ssl=1",
                 video: "",
-                commentaires: []
+                commentaires: [],
+                categorie: 1
             },
         ],
         error: "",
@@ -43,7 +44,8 @@ const articleReducer = createSlice({
                 is_vendable: update.is_vendable,
                 photo: update.photo,
                 video: update.video,
-                commentaires: update.commentaires
+                commentaires: update.commentaires,
+                categorie: update.categorie
             }
             return { ...state, data: updateArticles }
         },

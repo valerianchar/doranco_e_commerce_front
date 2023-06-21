@@ -74,12 +74,13 @@ const ArticlesListPage = () => {
                     articles.data.map((article, index) => {
                         if(article.is_vendable) {
                             return (
-                                <div key={index} className="w-[50%] min-w-[800px]">
+                                <div key={index} className="w-1/2 min-w-[800px]">
                                     <div className="w-auto flex flex-row shadow-2xl bg-zinc-100 max-w-5xl space-x-7 p-5 rounded-xl mb-10 h-64">
                                         <img src={article.photo} className="h-56 w-72" alt="" />
                                         <div className="flex flex-col w-2/3">
                                             <h1 className="text-2xl font-bold underline mb-5 hover:cursor-pointer" onClick={() => navigate("/articles/"+index)}>{article.nom}</h1>
-                                            <p className="truncate">{article.description}</p>
+                                            <p className="truncate w-auto">{article.description}</p>
+                                            <p></p>
                                             <p className="">En stock: {article.stock}</p>
                                             <div className="flex justify-end flex-col pt-10 w-full">
                                                 <div className="flex flex-row space-x-7">

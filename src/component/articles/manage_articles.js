@@ -6,6 +6,7 @@ import {addOneArticle, removeOneArticle, updateOneArticle} from "../../store/red
 const ManageArticles = () => {
 
     const articles = useSelector(state => state.articles.data)
+    const categorieState = useSelector((state => state.categories.data))
     const [updateElement, setUpdateElement] = useState(false)
     const [updatingIndex, setUpdatingIndex] = useState(0)
     const [formType, setFormType] = useState("")
@@ -19,7 +20,7 @@ const ManageArticles = () => {
     const [isVendable, setIsVendable] = useState(false)
     const [photo, setPhoto] = useState("")
     const [video, setVideo] = useState("")
-
+    const [categorie, setCategorie] = useState(0)
 
     const updateSwitcher = (index) => {
         setFormType("update")
@@ -33,6 +34,7 @@ const ManageArticles = () => {
         setIsVendable(articles[index].is_vendable)
         setPhoto(articles[index].photo)
         setVideo(articles[index].video)
+        setCategorie(articles[index].categorie.id)
     }
     const handleNomChange = (e) => setNom(e.target.value)
     const handleDescriptionChange = (e) => setDescription(e.target.value)
@@ -42,6 +44,7 @@ const ManageArticles = () => {
     const handleIsVendableChange = (e) => setIsVendable(!isVendable)
     const handlePhotoChange = (e) => setPhoto(e.target.value)
     const handleVideoChange = (e) => setVideo(e.target.value)
+    const handleCategorieChange = (e) => setCategorie(e.target.value)
     const handleUpdateElementSubmit = (e) => {
         e.preventDefault()
         switch (formType) {
@@ -58,7 +61,8 @@ const ManageArticles = () => {
                         is_vendable: isVendable,
                         photo: photo,
                         video: video,
-                        commentaires: articles[updatingIndex].commentaires
+                        commentaires: articles[updatingIndex].commentaires,
+                        categorie: categorie,
                     }
                 }
                 dispatch(updateOneArticle(payloadUpdate))
@@ -75,7 +79,8 @@ const ManageArticles = () => {
                     is_vendable: isVendable,
                     photo: photo,
                     video: video,
-                    commentaires: []
+                    commentaires: [],
+                    categorie: categorie
                 }
                 dispatch(addOneArticle(payloadCreate))
                 setUpdateElement(!updateElement)
@@ -85,7 +90,7 @@ const ManageArticles = () => {
         }
 
     }
-    const CreateNewArticle = (e) => {
+    const CreateNewArticle = () => {
         setFormType("create")
         setUpdateElement(!updateElement)
         setNom("")
@@ -96,6 +101,7 @@ const ManageArticles = () => {
         setIsVendable(false)
         setPhoto("")
         setVideo("")
+        setCategorie(0)
     }
     const RemoveArticle = (index) => {
         let payload = {
@@ -189,6 +195,17 @@ const ManageArticles = () => {
                                     <div className="flex flex-col w-96">
                                         <label  className="font-bold underline">Lien de la vidéo (si nécessité)</label>
                                         <input className="bg-transparent border-b-2 h-10 " type="text" value={video} onChange={handleVideoChange} />
+                                    </div>
+                                </div>
+                                <div className="flex flex-row space-x-14 py-6">
+                                    <div className="flex flex-col w-96">
+                                        <label  className="font-bold underline">Sélectionnez une catégorie</label>
+                                        <select onChange={handleCategorieChange}>
+                                            <option>Sélectionner une catégorie</option>
+                                            {categorieState.map((item, i) => {
+                                                return(<option key={i} value={item.id}>{item.nom}</option>)
+                                            })}
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="w-max flex justify-center">
