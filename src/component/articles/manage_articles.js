@@ -97,9 +97,9 @@ const ManageArticles = () => {
         setPhoto("")
         setVideo("")
     }
-    const RemoveArticle = (article_id) => {
+    const RemoveArticle = (index) => {
         let payload = {
-            index: article_id
+            index: index
         }
         dispatch(removeOneArticle(payload))
     }

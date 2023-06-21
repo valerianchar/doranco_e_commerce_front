@@ -672,6 +672,18 @@ video {
   width: 100vw;
 }
 
+.w-\[60\%\] {
+  width: 60%;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.w-72 {
+  width: 18rem;
+}
+
 .min-w-\[800px\] {
   min-width: 800px;
 }
@@ -679,6 +691,10 @@ video {
 .min-w-max {
   min-width: -webkit-max-content;
   min-width: max-content;
+}
+
+.min-w-\[850px\] {
+  min-width: 850px;
 }
 
 .max-w-2xl {
@@ -895,6 +911,11 @@ video {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.filter {
+  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .hover\:cursor-pointer:hover {

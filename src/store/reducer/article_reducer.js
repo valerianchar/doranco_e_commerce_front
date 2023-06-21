@@ -6,7 +6,7 @@ const articleReducer = createSlice({
     initialState: {
         data: [
             {
-                id: "1",
+                id: 0,
                 nom: "Graines de sarazin",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet, ante in laoreet consectetur, ipsum tellus vulputate risus, eget laoreet justo lectus vitae ante. Nullam sed quam blandit, rhoncus urna a, rhoncus ante. Vestibulum condimentum lacinia cursus. Cras eget sagittis purus. Etiam tempus lorem porttitor erat condimentum, sed malesuada leo convallis. Aliquam mollis eget dui in iaculis. Sed faucibus ac nibh vel consectetur. Nulla ut nibh et ante commodo venenatis. Etiam ultricies mattis vestibulum. Sed accumsan ut dolor nec condimentum.",
                 prix: 100,
@@ -48,9 +48,9 @@ const articleReducer = createSlice({
             return { ...state, data: updateArticles }
         },
         removeOneArticle: (state, action) => {
-            const updateArticles = [...state.data.articles]
-            updateArticles.splice(updateArticles[action.payload.index], 1)
-            return {...state, data: { ...state.data, articles: updateArticles } }
+            const updateArticles = [...state.data]
+            let update = updateArticles.filter((elem, i) => i !== action.payload.index)
+            return {...state, data: update}
         }
     }
 })

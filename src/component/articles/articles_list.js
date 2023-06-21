@@ -8,7 +8,6 @@ import {
     removeOneQteToBasketItem
 } from "../../store/reducer/basket_reducer";
 import {useEffect, useState} from "react";
-import login from "../auth/login";
 
 const ArticlesListPage = () => {
     const navigate = useNavigate()
@@ -16,6 +15,7 @@ const ArticlesListPage = () => {
     const dispatch = useDispatch()
     const [basket, setBasket] = useState([])
     const basketState = useSelector(state => state.basket.data)
+    const [error, setError] = useState({})
 
     useEffect(() => {
         setBasket(basketState)
@@ -27,7 +27,6 @@ const ArticlesListPage = () => {
         // eslint-disable-next-line array-callback-return
         for(let i=0;i<basket.length;i++){
             if(basket[i].article === article_id) {
-                // eslint-disable-next-line no-unused-vars
                 found = true
                 index = i
                 break;
@@ -76,11 +75,12 @@ const ArticlesListPage = () => {
                         if(article.is_vendable) {
                             return (
                                 <div key={index} className="w-[50%] min-w-[800px]">
-                                    <div className="w-auto flex flex-row shadow-2xl bg-zinc-100 max-w-5xl space-x-7 p-5 rounded-xl mb-10 h-56">
-                                        <img src={article.photo} className="w-56" alt="" />
+                                    <div className="w-auto flex flex-row shadow-2xl bg-zinc-100 max-w-5xl space-x-7 p-5 rounded-xl mb-10 h-64">
+                                        <img src={article.photo} className="h-56 w-72" alt="" />
                                         <div className="flex flex-col w-2/3">
                                             <h1 className="text-2xl font-bold underline mb-5 hover:cursor-pointer" onClick={() => navigate("/articles/"+index)}>{article.nom}</h1>
                                             <p className="truncate">{article.description}</p>
+                                            <p className="">En stock: {article.stock}</p>
                                             <div className="flex justify-end flex-col pt-10 w-full">
                                                 <div className="flex flex-row space-x-7">
                                                     <button className="items-end border p-2 rounded bg-green-500 w-fit" onClick={() => AddArticle(index)}>Ajouter à mon panier</button>
