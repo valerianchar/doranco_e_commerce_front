@@ -4,9 +4,9 @@ import NavigationBar from "../../router";
 import {removeItemFromBasket, removeOneQteToBasketItem} from "../../store/reducer/basket_reducer";
 
 const PanierScreen = () => {
-    const basketState = useSelector(state => state.basket.data.basket)
+    const basketState = useSelector(state => state.basket.data)
     const [basket, setBasket] = useState([])
-    const articles = useSelector(state => state.articles.data.articles)
+    const articles = useSelector(state => state.articles.data)
     const dispatch = useDispatch()
 
     useEffect(() => {

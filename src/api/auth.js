@@ -5,6 +5,9 @@ import {updateAuth} from "../store/reducer/auth_reducer";
 
 export const Login = async (body) => {
     await api_no_auth.post("/login", body)
-        .then(resp => store.dispatch(updateAuth(resp.data)))
+        .then(resp => {
+            store.dispatch(updateAuth(resp.data))
+            window.location.href = "/"
+        })
         .catch(error => store.dispatch(updateAuth(error.response.data)))
 }

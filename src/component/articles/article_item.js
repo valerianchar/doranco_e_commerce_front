@@ -1,10 +1,10 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import NavigationBar from "../../router";
 
 const ArticleItem = () => {
     const {id} = useParams()
-    const article = useSelector(state => state.articles.data.articles[id])
+    const article = useSelector(state => state.articles.data[id])
 
 
 

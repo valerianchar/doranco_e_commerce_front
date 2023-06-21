@@ -69,7 +69,7 @@ export const routes = createBrowserRouter([
 ])
 
 const NavigationBar = () => {
-    const auth = useSelector(state => state.auth)
+    const auth = useSelector(state => state.auth.data)
     // eslint-disable-next-line no-unused-vars
     const navigate = useNavigate()  //pour la gestion de state
     const locator = useLocation()
@@ -78,11 +78,11 @@ const NavigationBar = () => {
             <div className="flex flex-col min-w-max w-[320px] px-8 max-w-sm h-screen bg-black text-white items-center justify-center text-center">
                     <ul>
                         <li>
-                            <Link to="/logout" className="text-2xl">{ auth.data.user ? <>{auth.data.user.prenom} {auth.data.user.nom} </>: <></> }</Link>
+                            <Link to="/logout" className="text-2xl">{ auth.data !== undefined ? <>{auth.data.prenom} {auth.data.nom} </>: <></> }</Link>
                         </li>
                         {
                             routes.routes.map((route, index) => {
-                                if(auth.data.user.id === "") {
+                                if(auth.data === {}) {
                                     if(route.name !== "auth") {
                                         return (<></>)
                                     }else {
@@ -109,7 +109,7 @@ const NavigationBar = () => {
                                         )
                                     }
                                 }else{
-                                    if(auth.data.user.profile === "Admin") {
+                                    if(auth.profil === "Admin") {
                                         if(route.name === "auth" || route.name === "Resume"){
                                             return(<div key={index}></div>)
                                         }else{
@@ -134,7 +134,7 @@ const NavigationBar = () => {
                                                 </li>
                                             )
                                         }
-                                    }else if(auth.data.user.profile === "Magasinier"){
+                                    }else if(auth.data.profile === "Magasinier"){
                                         if(route.name === "auth" || route.name === "Administration"){
                                             return (
                                                 <div key={index}></div>

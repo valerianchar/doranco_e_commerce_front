@@ -5,7 +5,7 @@ import {addOneArticle, removeOneArticle, updateOneArticle} from "../../store/red
 
 const ManageArticles = () => {
 
-    const articles = useSelector(state => state.articles.data.articles)
+    const articles = useSelector(state => state.articles.data)
     const [updateElement, setUpdateElement] = useState(false)
     const [updatingIndex, setUpdatingIndex] = useState(0)
     const [formType, setFormType] = useState("")
@@ -42,7 +42,8 @@ const ManageArticles = () => {
     const handleIsVendableChange = (e) => setIsVendable(!isVendable)
     const handlePhotoChange = (e) => setPhoto(e.target.value)
     const handleVideoChange = (e) => setVideo(e.target.value)
-    const handleUpdateElementSubmit = () => {
+    const handleUpdateElementSubmit = (e) => {
+        e.preventDefault()
         switch (formType) {
             case "update":
                 let payloadUpdate = {
