@@ -1,5 +1,6 @@
 import NavigationBar from "../../router";
 import {useState} from "react";
+import {Login} from "../../api/auth";
 
 const LoginScreen = () => {
 
@@ -10,7 +11,11 @@ const LoginScreen = () => {
     const handlePasswordChange = (e) => setPassword(e.target.value)
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        let body = {
+            email: email,
+            password: password,
+        }
+        Login(body)
     }
 
     return (
