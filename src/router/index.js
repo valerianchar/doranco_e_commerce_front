@@ -35,6 +35,11 @@ export const routes = createBrowserRouter([
             {
                 path: "/articles/panier/resume",
                 element: <h1>2</h1>
+            },
+            {
+                path: "/articles/commentaires",
+                name: "Mes commentaires",
+                element: <p>Liste des commentaires de l'utilisateurs</p>
             }
         ]
     },

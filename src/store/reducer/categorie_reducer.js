@@ -10,6 +10,20 @@ const categorieSlice = createSlice({
                 remise: 0,
                 isRemiseCumulable: true,
                 photo: "",
+            },
+            {
+                id: 2,
+                nom: "test 2",
+                remise: 0,
+                isRemiseCumulable: true,
+                photo: "",
+            },
+            {
+                id: 3,
+                nom: "test 3",
+                remise: 0,
+                isRemiseCumulable: true,
+                photo: "",
             }
         ],
         error: "",

@@ -53,9 +53,15 @@ const articleReducer = createSlice({
             const updateArticles = [...state.data]
             let update = updateArticles.filter((elem, i) => i !== action.payload.index)
             return {...state, data: update}
+        },
+
+        addCommentary: (state, action) => {
+            console.log(action.payload)
+            const articles = [...state.data]
+            articles[action.payload.index].commentaires.push(action.payload.comm)
         }
     }
 })
 
-export const {initArticles, updateOneArticle, addOneArticle, removeOneArticle} = articleReducer.actions
+export const {initArticles, updateOneArticle, addOneArticle, removeOneArticle, addCommentary} = articleReducer.actions
 export default articleReducer.reducer
