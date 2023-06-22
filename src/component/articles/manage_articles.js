@@ -2,6 +2,7 @@ import NavigationBar from "../../router";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {addOneArticle, removeOneArticle, updateOneArticle} from "../../store/reducer/article_reducer";
+import {AddArticle} from "../../api/article";
 
 const ManageArticles = () => {
 
@@ -58,7 +59,7 @@ const ManageArticles = () => {
                         prix: prix,
                         remise: remise,
                         stock: stock,
-                        is_vendable: isVendable,
+                        vendable: isVendable,
                         photo: photo,
                         video: video,
                         commentaires: articles[updatingIndex].commentaires,
@@ -70,13 +71,12 @@ const ManageArticles = () => {
                 break
             case "create":
                 let payloadCreate = {
-                    id: 0,
                     nom: nom,
                     description: description,
                     prix: prix,
                     remise: remise,
                     stock: stock,
-                    is_vendable: isVendable,
+                    vendable: isVendable,
                     photo: photo,
                     video: video,
                     commentaires: [],
@@ -84,6 +84,7 @@ const ManageArticles = () => {
                 }
                 dispatch(addOneArticle(payloadCreate))
                 setUpdateElement(!updateElement)
+                AddArticle(payloadCreate)
                 break
             default:
                 return
