@@ -18,7 +18,7 @@ export const api = axios.create({
 api.interceptors.request.use(
     function (config) {
 
-        config.headers.Authorization = store.getState().auth.data.id
+        config.headers.Authorization = "Bearer "+store.getState().auth.data.profil
 
         return config;
     },

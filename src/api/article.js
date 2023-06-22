@@ -1,10 +1,10 @@
-import {api_no_auth} from "./overall";
+import {api, api_no_auth} from "./overall";
 import store from "../store";
 import {initArticles} from "../store/reducer/article_reducer";
 import {initState} from "../store/reducer/categorie_reducer";
 
 export const AddArticle = async (body) => {
-    await api_no_auth.post("/article/add", body)
+    await api.post("/article/add", body)
         .then(resp => {})
         .catch(error => {})
 }
@@ -23,14 +23,13 @@ export const GetAllCategories = async () => {
 }
 
 export const AddCommentaire = async (body) => {
-    await api_no_auth.post("/comment/add", body)
+    await api.post("/comment/add", body)
         .then(resp => {})
         .catch(error => {})
 }
 
 export const DeleteArticle = async (id) => {
-    console.log(id)
-    await api_no_auth.delete("/article/delete/"+id)
+    await api.delete("/article/delete/"+id)
         .then(resp => {})
         .catch(error => {})
 }

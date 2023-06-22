@@ -6,6 +6,7 @@ import ArticleItem from "../component/articles/article_item";
 import ManageArticles from "../component/articles/manage_articles";
 import PanierScreen from "../component/panier/panier";
 import { useEffect, useState } from "react";
+import {Logout} from "../api/auth";
 
 export const routes = createBrowserRouter([
     {
@@ -82,13 +83,23 @@ const NavigationBar = () => {
         setAuth(authState)
     }, [authState])
 
+    const handleLogoutClick = (e) => {
+        e.preventDefault()
+        Logout()
+    }
 
     return (
         <>
             <div className="flex flex-col min-w-max w-[320px] px-8 max-w-sm h-screen bg-black text-white items-center justify-center text-center">
                     <ul>
                         <li>
-                            <Link to="/logout" className="text-2xl">{auth.prenom} {auth.nom}</Link>
+                            {auth.id !== undefined ?
+                                <>
+                                    <div className="text-2xl">{auth.prenom} {auth.nom}</div>
+                                    <div onClick={handleLogoutClick} className="text-2xl">Se deconnecter</div>
+                                </> :
+                                <></>
+                            }
                         </li>
                         {
                             routes.routes.map((route, index) => {
