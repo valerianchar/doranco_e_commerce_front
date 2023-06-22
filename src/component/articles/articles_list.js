@@ -77,7 +77,7 @@ const ArticlesListPage = () => {
 
                 {articles.length > 0 ?
                     articles.map((article, index) => {
-                        if(article.is_vendable) {
+                        if(article.vendable) {
                             return (
                                 <div key={index} className="w-1/2 min-w-[800px]">
                                     <div className="w-auto flex flex-row shadow-2xl bg-zinc-100 max-w-5xl space-x-7 p-5 rounded-xl mb-10 h-64">
