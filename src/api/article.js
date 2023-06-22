@@ -20,3 +20,9 @@ export const GetAllCategories = async () => {
         .then(resp => store.dispatch(initState(resp.data)))
         .catch(error => store.dispatch(initState(error.response.data)))
 }
+
+export const AddCommentaire = async (body) => {
+    await api_no_auth.post("/comment/add", body)
+        .then(resp => {})
+        .catch(error => {})
+}

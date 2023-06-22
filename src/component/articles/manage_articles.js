@@ -12,12 +12,6 @@ const ManageArticles = () => {
     const [updatingIndex, setUpdatingIndex] = useState(0)
     const [formType, setFormType] = useState("")
     const dispatch = useDispatch()
-    const categories = useSelector(state => state.categories.data)
-    useEffect(() => {
-        if(categories.length < 1){
-            GetAllCategories()
-        }
-    })
 
     const [nom, setNom] = useState("")
     const [description, setDescription] = useState("")

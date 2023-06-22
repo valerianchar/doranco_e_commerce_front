@@ -20,11 +20,7 @@ const ArticlesListPage = () => {
 
     useEffect(() => {
         setBasket(basketState)
-        if(articles.length < 1) {
-            GetAllArticles()
-        }
-
-    }, [basketState, articles])
+    }, [basketState])
 
     const AddArticle = (article_id) => {
         let found = false

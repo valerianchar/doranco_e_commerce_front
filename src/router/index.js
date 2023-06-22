@@ -1,11 +1,12 @@
 import {createBrowserRouter, Link, useLocation, useNavigate} from "react-router-dom";
-import React from "react";
+import React, {useEffect} from "react";
 import LoginScreen from "../component/auth/login";
 import {useSelector} from "react-redux";
 import ArticlesListPage from "../component/articles/articles_list";
 import ArticleItem from "../component/articles/article_item";
 import ManageArticles from "../component/articles/manage_articles";
 import PanierScreen from "../component/panier/panier";
+import {GetAllArticles, GetAllCategories} from "../api/article";
 
 export const routes = createBrowserRouter([
     {
@@ -75,9 +76,21 @@ export const routes = createBrowserRouter([
 
 const NavigationBar = () => {
     const auth = useSelector(state => state.auth.data)
+    const articles = useSelector(state => state.articles.data)
+    const categories = useSelector(state => state.categories.data)
     // eslint-disable-next-line no-unused-vars
     const navigate = useNavigate()  //pour la gestion de state
     const locator = useLocation()
+
+    useEffect(() => {
+        if(articles.length < 1) {
+            GetAllArticles()
+        }
+        if(categories.length < 1){
+            GetAllCategories()
+        }
+    }, [articles, categories])
+
     return (
         <>
             <div className="flex flex-col min-w-max w-[320px] px-8 max-w-sm h-screen bg-black text-white items-center justify-center text-center">

@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import NavigationBar from "../../router";
 import {useState} from "react";
 import {addCommentary} from "../../store/reducer/article_reducer";
+import {AddCommentaire} from "../../api/article";
 
 const ArticleItem = () => {
     const {id} = useParams()
@@ -27,6 +28,7 @@ const ArticleItem = () => {
         }
         dispatch(addCommentary(payload))
         setComm("")
+        AddCommentaire(payload.comm)
     }
 
     return(
@@ -42,7 +44,7 @@ const ArticleItem = () => {
                 </div>
                 <h1 className="flex xl:w-[50%] text-2xl font-bold text-start" >Ajoutez un commentaire</h1>
                 <form className="flex flex-col w-full text-2xl xl:w-[50%]" onSubmit={handleSubmit}>
-                    <textarea onChange={(e) => handleCommentChange(e, article.id, current_user.id)} className="flex w-full h-44 text-2xl"></textarea>
+                    <textarea value={comm} onChange={(e) => handleCommentChange(e, article.id, current_user.id)} className="flex w-full h-44 text-2xl"></textarea>
                     <button type="submit" className="flex justify-end">Ajouter un commentaire</button>
                 </form>
                 {

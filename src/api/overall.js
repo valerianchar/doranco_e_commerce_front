@@ -22,7 +22,7 @@ export const api = axios.create({
 api.interceptors.request.use(
     function (config) {
 
-        config.headers.Authorization = store.getState().auth.data.user.id
+        config.headers.Authorization = store.getState().auth.data.id
 
         return config;
     },
