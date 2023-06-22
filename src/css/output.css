@@ -575,10 +575,6 @@ video {
   margin: 2.5rem;
 }
 
-.m-4 {
-  margin: 1rem;
-}
-
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -817,12 +813,12 @@ video {
   padding: 0.5rem;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
 .p-4 {
   padding: 1rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-16 {

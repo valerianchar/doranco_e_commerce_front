@@ -1,9 +1,5 @@
 import axios from "axios";
-//import Cookies from "universal-cookie";
 import store from "../store";
-
-
-//const cookie = new Cookies()
 
 export const api_no_auth = axios.create({
     baseURL: "http://localhost:8080/ECommerceBack/rest",

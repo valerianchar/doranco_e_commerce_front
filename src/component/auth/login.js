@@ -1,11 +1,12 @@
 import {useState} from "react";
 import {Login} from "../../api/auth";
+import {useNavigate} from "react-router-dom";
 
 const LoginScreen = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const navigate = useNavigate()
     const handleEmailChange = (e) => setEmail(e.target.value)
     const handlePasswordChange = (e) => setPassword(e.target.value)
     const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ const LoginScreen = () => {
             email: email,
             password: password,
         }
-        Login(body)
+        Login(body).then(_ => navigate("/"))
     }
 
     return (

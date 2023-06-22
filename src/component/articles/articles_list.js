@@ -8,7 +8,6 @@ import {
     removeOneQteToBasketItem
 } from "../../store/reducer/basket_reducer";
 import {useEffect, useState} from "react";
-import {GetAllArticles} from "../../api/article";
 
 const ArticlesListPage = () => {
     const navigate = useNavigate()
@@ -20,7 +19,7 @@ const ArticlesListPage = () => {
 
     useEffect(() => {
         setBasket(basketState)
-    }, [basketState])
+    }, [basketState, navigate])
 
     const AddArticle = (article_id) => {
         let found = false

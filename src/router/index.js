@@ -83,13 +83,18 @@ const NavigationBar = () => {
     const locator = useLocation()
 
     useEffect(() => {
+        console.log(auth)
+        if(auth.id === undefined){
+            console.log(2)
+            navigate("/auth/login")
+        }
         if(articles.length < 1) {
             GetAllArticles()
         }
         if(categories.length < 1){
             GetAllCategories()
         }
-    }, [articles, categories])
+    }, [articles, auth, categories, navigate])
 
     return (
         <>
@@ -152,7 +157,7 @@ const NavigationBar = () => {
                                                 </li>
                                             )
                                         }
-                                    }else if(auth.data.profile === "Magasinier"){
+                                    }else if(auth.profil === "Magasinier"){
                                         if(route.name === "auth" || route.name === "Administration"){
                                             return (
                                                 <div key={index}></div>
