@@ -11,7 +11,8 @@ export const AddArticle = async (body) => {
 
 export const GetAllArticles = async () => {
     await api_no_auth.get("/article/all")
-        .then(resp => store.dispatch(initArticles(resp.data)))
+        .then(resp => {
+            store.dispatch(initArticles(resp.data))})
         .catch(error => store.dispatch(initArticles(error.response.data)))
 }
 
@@ -23,6 +24,13 @@ export const GetAllCategories = async () => {
 
 export const AddCommentaire = async (body) => {
     await api_no_auth.post("/comment/add", body)
+        .then(resp => {})
+        .catch(error => {})
+}
+
+export const DeleteArticle = async (id) => {
+    console.log(id)
+    await api_no_auth.delete("/article/delete/"+id)
         .then(resp => {})
         .catch(error => {})
 }

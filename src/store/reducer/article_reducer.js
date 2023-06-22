@@ -42,7 +42,6 @@ const articleReducer = createSlice({
         },
 
         addCommentary: (state, action) => {
-            console.log(action.payload)
             const articles = [...state.data]
             articles[action.payload.index].commentaires.push(action.payload.comm)
         }

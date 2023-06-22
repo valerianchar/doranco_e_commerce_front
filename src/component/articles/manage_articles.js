@@ -1,8 +1,8 @@
 import NavigationBar from "../../router";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {addOneArticle, removeOneArticle, updateOneArticle} from "../../store/reducer/article_reducer";
-import {AddArticle, GetAllCategories} from "../../api/article";
+import {AddArticle, DeleteArticle} from "../../api/article";
 
 const ManageArticles = () => {
 
@@ -103,11 +103,12 @@ const ManageArticles = () => {
         setVideo("")
         setCategorie(0)
     }
-    const RemoveArticle = (index) => {
+    const RemoveArticle = (index, id) => {
         let payload = {
             index: index
         }
         dispatch(removeOneArticle(payload))
+        DeleteArticle(id)
     }
 
     return (<div className="flex flex-row">
@@ -136,7 +137,7 @@ const ManageArticles = () => {
                                                 <th className="border px-8">{article.is_vendable === true ? "Vendable" : "Non vendable"}</th>
                                                 <th className="border px-8 space-x-7">
                                                     <i onClick={() => updateSwitcher(index)} className="fa-solid fa-pen-to-square hover:cursor-pointer"></i>
-                                                    <i onClick={() => RemoveArticle(index)} className="fa-solid fa-trash fa-spin-pulse hover:cursor-pointer"></i>
+                                                    <i onClick={() => RemoveArticle(index, article.id)} className="fa-solid fa-trash fa-spin-pulse hover:cursor-pointer"></i>
                                                 </th>
                                             </tr>
                                         )

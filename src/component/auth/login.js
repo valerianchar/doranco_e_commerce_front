@@ -15,7 +15,9 @@ const LoginScreen = () => {
             email: email,
             password: password,
         }
-        Login(body).then(_ => navigate("/"))
+        Login(body).then(_ => {
+            navigate("/")
+        })
     }
 
     return (
