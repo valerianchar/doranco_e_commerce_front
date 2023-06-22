@@ -8,18 +8,23 @@ import {
     removeOneQteToBasketItem
 } from "../../store/reducer/basket_reducer";
 import {useEffect, useState} from "react";
+import {GetAllArticles} from "../../api/article";
 
 const ArticlesListPage = () => {
     const navigate = useNavigate()
-    const articles = useSelector(state => state.articles)
+    const articles = useSelector(state => state.articles.data)
     const dispatch = useDispatch()
     const [basket, setBasket] = useState([])
     const basketState = useSelector(state => state.basket.data)
-    const [error, setError] = useState({})
+    //const [error, setError] = useState({})
 
     useEffect(() => {
         setBasket(basketState)
-    }, [basketState])
+        if(articles.length < 1) {
+            GetAllArticles()
+        }
+
+    }, [basketState, articles])
 
     const AddArticle = (article_id) => {
         let found = false
@@ -71,7 +76,7 @@ const ArticlesListPage = () => {
                 <h1 className="text-3xl font-bold py-10 underline">Liste des articles</h1>
 
                 {articles.data.length > 0 ?
-                    articles.data.map((article, index) => {
+                    articles.map((article, index) => {
                         if(article.is_vendable) {
                             return (
                                 <div key={index} className="w-1/2 min-w-[800px]">
