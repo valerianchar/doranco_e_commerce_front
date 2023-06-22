@@ -75,7 +75,7 @@ const ArticlesListPage = () => {
 
                 <h1 className="text-3xl font-bold py-10 underline">Liste des articles</h1>
 
-                {articles.data.length > 0 ?
+                {articles.length > 0 ?
                     articles.map((article, index) => {
                         if(article.is_vendable) {
                             return (
