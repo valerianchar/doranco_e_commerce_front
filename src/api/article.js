@@ -1,15 +1,15 @@
-import {api} from "./overall";
+import {api_no_auth} from "./overall";
 import store from "../store";
 import {initArticles} from "../store/reducer/article_reducer";
 
 export const AddArticle = async (body) => {
-    await api.post("/article/add", body)
+    await api_no_auth.post("/article/add", body)
         .then(resp => {})
         .catch(error => {})
 }
 
 export const GetAllArticles = async () => {
-    await api.get("/articles/all")
+    await api_no_auth.get("/article/all")
         .then(resp => store.dispatch(initArticles(resp.data)))
         .catch(error => store.dispatch(initArticles(error.response.data)))
 }
