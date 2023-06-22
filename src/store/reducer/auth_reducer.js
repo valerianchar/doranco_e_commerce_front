@@ -8,7 +8,7 @@ const authSlice = createSlice({
     },
     reducers : {
         updateAuth: (state, action) => {
-            return {...state, data: action.payload }
+            return {...state, ...action.payload }
         }
     }
 })
