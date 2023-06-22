@@ -1,8 +1,8 @@
 import NavigationBar from "../../router";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {addOneArticle, removeOneArticle, updateOneArticle} from "../../store/reducer/article_reducer";
-import {AddArticle} from "../../api/article";
+import {AddArticle, GetAllCategories} from "../../api/article";
 
 const ManageArticles = () => {
 
@@ -12,6 +12,12 @@ const ManageArticles = () => {
     const [updatingIndex, setUpdatingIndex] = useState(0)
     const [formType, setFormType] = useState("")
     const dispatch = useDispatch()
+    const categories = useSelector(state => state.categories.data)
+    useEffect(() => {
+        if(categories.length < 1){
+            GetAllCategories()
+        }
+    })
 
     const [nom, setNom] = useState("")
     const [description, setDescription] = useState("")
@@ -79,7 +85,6 @@ const ManageArticles = () => {
                     vendable: isVendable,
                     photo: photo,
                     video: video,
-                    commentaires: [],
                     categorie: categorie
                 }
                 dispatch(addOneArticle(payloadCreate))
