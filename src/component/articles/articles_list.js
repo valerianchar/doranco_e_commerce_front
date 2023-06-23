@@ -28,9 +28,11 @@ const ArticlesListPage = () => {
         if(categories.length < 1){
             GetAllCategories()
         }
-    }, [basketState, navigate, articles, categories])
+        // eslint-disable-next-line
+    }, [basketState, navigate])
 
     const AddArticle = (article_id) => {
+        
         let found = false
         let index = 0
         // eslint-disable-next-line array-callback-return

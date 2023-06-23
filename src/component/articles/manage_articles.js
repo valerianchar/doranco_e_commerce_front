@@ -1,8 +1,8 @@
 import NavigationBar from "../../router";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {addOneArticle, removeOneArticle, updateOneArticle} from "../../store/reducer/article_reducer";
-import {AddArticle, DeleteArticle} from "../../api/article";
+import {AddArticle, DeleteArticle, GetAllArticles, GetAllCategories} from "../../api/article";
 
 const ManageArticles = () => {
 
@@ -22,6 +22,17 @@ const ManageArticles = () => {
     const [photo, setPhoto] = useState("")
     const [video, setVideo] = useState("")
     const [categorie, setCategorie] = useState(0)
+
+    useEffect(() => {
+        if(articles.length < 1) {
+            GetAllArticles()
+        }
+        
+        if(categorieState.length < 1){
+            GetAllCategories()
+        }
+        // eslint-disable-next-line
+    })
 
     const updateSwitcher = (index) => {
         setFormType("update")

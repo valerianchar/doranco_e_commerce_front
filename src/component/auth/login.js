@@ -24,8 +24,9 @@ const LoginScreen = () => {
 
     return (
         <div className="flex flex-row justify-center items-center h-screen">
-            <form onSubmit={handleSubmit} className="flex flex-col">
-                <input type="text" value={email} onChange={handleEmailChange} className="border-b-2" />
+            <form onSubmit={handleSubmit} className="flex flex-col items-center w-1/3">
+                <h1>Connexion</h1>
+                <input type="text" value={email} onChange={handleEmailChange} className="border-b-2 h-10 w-1/2" />
                 <input type="password" value={password} onChange={handlePasswordChange} className="border-b-2" />
                 <button type="submit">Connexion</button>
             </form>

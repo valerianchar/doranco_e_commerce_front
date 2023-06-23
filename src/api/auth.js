@@ -13,6 +13,8 @@ export const Login = async (body) => {
 }
 export const Logout = async () => {
     await api.get("/utilisat/logout")
-        .then(resp => store.dispatch(killAuth()))
+        .then(resp => {
+            store.dispatch(killAuth())
+        })
         .catch(error => {})
 }

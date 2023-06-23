@@ -19,16 +19,15 @@ const ArticleItem = () => {
         let payload = {
             index: id,
             comm: {
-                id: 0,
-                text: comm,
+                texte: comm,
                 note: 0,
                 article: article_id,
                 utilisateur: user_id,
             }
         }
-        dispatch(addCommentary(payload))
+        console.log(article_id)
         setComm("")
-        AddCommentaire(payload.comm)
+        AddCommentaire(payload)
     }
 
     return(
@@ -43,7 +42,7 @@ const ArticleItem = () => {
                     </div>
                 </div>
                 <h1 className="flex xl:w-[50%] text-2xl font-bold text-start" >Ajoutez un commentaire</h1>
-                <form className="flex flex-col w-full text-2xl xl:w-[50%]" onSubmit={handleSubmit}>
+                <form className="flex flex-col w-full text-2xl xl:w-[50%]" onSubmit={(e) => handleSubmit(e, article.id, current_user.id)}>
                     <textarea value={comm} onChange={(e) => handleCommentChange(e, article.id, current_user.id)} className="flex w-full h-44 text-2xl"></textarea>
                     <button type="submit" className="flex justify-end">Ajouter un commentaire</button>
                 </form>
@@ -52,7 +51,7 @@ const ArticleItem = () => {
                         return(
                             <div key={i} className="flex flex-col xl:w-[50%] border space-y-3 p-4">
                                 <div>Utilisateur: {comm.utilisateur}</div>
-                                <div className="">{comm.text}</div>
+                                <div className="">{comm.texte}</div>
                             </div>
                         )
                     })
