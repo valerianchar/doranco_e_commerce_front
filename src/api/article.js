@@ -1,11 +1,18 @@
 import {api, api_no_auth} from "./overall";
 import store from "../store";
-import {addCommentary, initArticles} from "../store/reducer/article_reducer";
+import {addCommentary, initArticles, updateOneArticlesID} from "../store/reducer/article_reducer";
 import {initState} from "../store/reducer/categorie_reducer";
 
-export const AddArticle = async (body) => {
+export const AddArticle = async (body, index) => {
     await api.post("/article/add", body)
-        .then(resp => {})
+        .then(resp => {
+            console.log(resp);
+            let payload = {
+                index: index,
+                id: resp.data
+            }
+            store.dispatch(updateOneArticlesID(payload))
+        })
         .catch(error => {})
 }
 
@@ -25,7 +32,7 @@ export const GetAllCategories = async () => {
 export const AddCommentaire = async (body) => {
     await api.post("/comment/add", body.comm)
         .then(resp => {
-            body.comm.id = resp.data.data
+            body.comm.id = resp.data
             store.dispatch(addCommentary(body))
         })
         .catch(error => {})

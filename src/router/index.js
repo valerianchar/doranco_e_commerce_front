@@ -167,7 +167,7 @@ const NavigationBar = () => {
                                                     <ul className="mt-4">
                                                         {route.children ?
                                                             route.children.map((child, i) => {
-                                                                if(child.name === "Resume" || child.name === "Mon panier" || child.name === "Liste des articles" || child.name === "Mon panier" || child.name === "Mes commentaires") {
+                                                                if(child.name === "Resume" || child.name === "Mon panier" || child.name === "Liste des articles" || child.name === "Mes commentaires") {
                                                                     return (<div key={i}></div>)
                                                                 }else {
                                                                     return(

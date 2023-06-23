@@ -82,6 +82,19 @@ const ManageArticles = () => {
                 break
             case "create":
                 let payloadCreate = {
+                    id: 0,
+                    nom: nom,
+                    description: description,
+                    prix: prix,
+                    remise: remise,
+                    stock: stock,
+                    vendable: isVendable,
+                    commentaires: [],
+                    photo: photo,
+                    video: video,
+                    categorie: categorie
+                }
+                let CreateReq = {
                     nom: nom,
                     description: description,
                     prix: prix,
@@ -94,7 +107,7 @@ const ManageArticles = () => {
                 }
                 dispatch(addOneArticle(payloadCreate))
                 setUpdateElement(!updateElement)
-                AddArticle(payloadCreate)
+                AddArticle(CreateReq, articles.length-1)
                 break
             default:
                 return

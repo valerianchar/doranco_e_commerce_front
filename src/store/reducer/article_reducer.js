@@ -35,6 +35,15 @@ const articleReducer = createSlice({
             }
             return { ...state, data: updateArticles }
         },
+        updateOneArticlesID: (state, action) => {
+            const {index, id} = action.payload
+            const updateArticles = [...state.data]
+            updateArticles[index] = {
+                ...updateArticles[index].id,
+                id: id,
+            }
+            return { ...state, data: updateArticles }
+        },
         removeOneArticle: (state, action) => {
             const updateArticles = [...state.data]
             let update = updateArticles.filter((elem, i) => i !== action.payload.index)
@@ -43,10 +52,10 @@ const articleReducer = createSlice({
 
         addCommentary: (state, action) => {
             const articles = [...state.data]
-            articles[action.payload.index].commentaires.push(action.payload.comm)
+            articles[action.payload.index].commentaires.push(action.payload.comment)
         }
     }
 })
 
-export const {initArticles, updateOneArticle, addOneArticle, removeOneArticle, addCommentary} = articleReducer.actions
+export const {initArticles, updateOneArticle, addOneArticle, removeOneArticle, addCommentary, updateOneArticlesID} = articleReducer.actions
 export default articleReducer.reducer

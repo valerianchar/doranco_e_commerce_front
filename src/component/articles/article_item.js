@@ -1,15 +1,13 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import NavigationBar from "../../router";
 import {useState} from "react";
-import {addCommentary} from "../../store/reducer/article_reducer";
 import {AddCommentaire} from "../../api/article";
 
 const ArticleItem = () => {
     const {id} = useParams()
     const article = useSelector(state => state.articles.data[id])
     const current_user = useSelector(state => state.auth.data)
-    const dispatch = useDispatch()
 
     const [comm, setComm] = useState()
 
@@ -18,14 +16,14 @@ const ArticleItem = () => {
         e.preventDefault()
         let payload = {
             index: id,
-            comm: {
+            comment: {
+                id: 0,
                 texte: comm,
                 note: 0,
                 article: article_id,
                 utilisateur: user_id,
             }
         }
-        console.log(article_id)
         setComm("")
         AddCommentaire(payload)
     }
@@ -50,7 +48,6 @@ const ArticleItem = () => {
                     article.commentaires.map((comm, i) => {
                         return(
                             <div key={i} className="flex flex-col xl:w-[50%] border space-y-3 p-4">
-                                <div>Utilisateur: {comm.utilisateur}</div>
                                 <div className="">{comm.texte}</div>
                             </div>
                         )
